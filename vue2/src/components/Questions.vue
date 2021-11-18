@@ -72,7 +72,6 @@ export default {
       surgery: null,
     };
   },
-  methods: {},
 };
 </script>
 
