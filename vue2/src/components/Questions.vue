@@ -12,8 +12,8 @@
               v-model="insurance"
               class="text-dark"
             >
-              <b-form-radio value="Y">はい</b-form-radio>
-              <b-form-radio value="N">いいえ</b-form-radio>
+              <b-form-radio value="はい">はい</b-form-radio>
+              <b-form-radio value="いいえ">いいえ</b-form-radio>
             </b-form-radio-group>
           </b-form-group>
           <transition name="fade">
@@ -27,8 +27,8 @@
                 v-model="hospitalization"
                 class="text-dark"
               >
-                <b-form-radio value="Y">はい</b-form-radio>
-                <b-form-radio value="N">いいえ</b-form-radio>
+                <b-form-radio value="はい">はい</b-form-radio>
+                <b-form-radio value="いいえ">いいえ</b-form-radio>
               </b-form-radio-group>
             </b-form-group>
           </transition>
@@ -39,8 +39,8 @@
               label="過去5年以内に、病気や怪我で、手術をうけたことまたは継続して７日以上の入院をしたことがありますか？"
             >
               <b-form-radio-group v-model="surgery" class="text-dark">
-                <b-form-radio value="Y">はい</b-form-radio>
-                <b-form-radio value="N">いいえ</b-form-radio>
+                <b-form-radio value="はい">はい</b-form-radio>
+                <b-form-radio value="いいえ">いいえ</b-form-radio>
               </b-form-radio-group>
             </b-form-group>
           </transition>
@@ -67,10 +67,33 @@ export default {
     return {
       showHospitalization: false,
       showSurgery: false,
-      insurance: null,
-      hospitalization: null,
-      surgery: null,
     };
+  },
+  computed: {
+    insurance: {
+      get() {
+        return this.$store.getters.insurance;
+      },
+      set(value) {
+        this.$store.commit("setInsurance", value);
+      },
+    },
+    hospitalization: {
+      get() {
+        return this.$store.getters.hospitalization;
+      },
+      set(value) {
+        this.$store.commit("setHospitalization", value);
+      },
+    },
+    surgery: {
+      get() {
+        return this.$store.getters.surgery;
+      },
+      set(value) {
+        this.$store.commit("setSurgery", value);
+      },
+    },
   },
 };
 </script>

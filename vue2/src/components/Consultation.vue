@@ -8,23 +8,32 @@
           </b-form-group>
         </b-card>
       </b-card-group>
-      <router-link
-        to="/questions"
-        tag="button"
-        class="btn btn-info mt-3 mx-auto"
-        style="display: block"
-        >前へ戻る</router-link
-      >
+      <div class="form-group row justify-content-center mt-3">
+        <div>
+          <router-link to="/questions" tag="button" class="btn btn-info mr-3"
+            >前へ戻る</router-link
+          >
+
+          <router-link to="/confirmation" tag="button" class="btn btn-info"
+            >次へ進む</router-link
+          >
+        </div>
+      </div>
     </b-container>
   </transition>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      text: null,
-    };
+  computed: {
+    text: {
+      get() {
+        return this.$store.getters.text;
+      },
+      set(value) {
+        this.$store.commit("setText", value);
+      },
+    },
   },
 };
 </script>

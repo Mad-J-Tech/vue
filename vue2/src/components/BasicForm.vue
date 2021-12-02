@@ -8,8 +8,8 @@
         >
           <b-form-group label="-性別-" class="text-info">
             <b-form-radio-group v-model="gender" class="text-dark">
-              <b-form-radio value="male">男性</b-form-radio>
-              <b-form-radio value="female">女性</b-form-radio>
+              <b-form-radio value="男性">男性</b-form-radio>
+              <b-form-radio value="女性">女性</b-form-radio>
             </b-form-radio-group>
           </b-form-group>
           <b-form inline>
@@ -51,16 +51,46 @@ import { yearList, monthList, dateList } from "../utiles/difinitions";
 export default {
   data() {
     return {
-      gender: "male",
-      birthYear: null,
-      birthMonth: null,
-      birthDate: null,
       birthday: {
         years: yearList,
         months: monthList,
         dates: dateList,
       },
     };
+  },
+  computed: {
+    gender: {
+      get() {
+        return this.$store.getters.gender;
+      },
+      set(value) {
+        this.$store.commit("setGender", value);
+      },
+    },
+    birthYear: {
+      get() {
+        return this.$store.getters.birthYear;
+      },
+      set(value) {
+        this.$store.commit("setBirthYear", value);
+      },
+    },
+    birthMonth: {
+      get() {
+        return this.$store.getters.birthMonth;
+      },
+      set(value) {
+        this.$store.commit("setBirthMonth", value);
+      },
+    },
+    birthDate: {
+      get() {
+        return this.$store.getters.birthDate;
+      },
+      set(value) {
+        this.$store.commit("setBirthDate", value);
+      },
+    },
   },
 };
 </script>
