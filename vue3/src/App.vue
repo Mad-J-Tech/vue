@@ -12,19 +12,23 @@
             </b-tr>
           </b-thead>
           <b-tbody>
-            <b-tr v-for="item in todos" v-bind:key="item.id">
+            <b-tr v-for="item in getTodos" v-bind:key="item.id">
               <b-th>{{ item.id }}</b-th>
               <b-td>{{ item.comment }}</b-td>
-              <b-td>{{ item.status ? "完了" : "作業中"}}</b-td>
+              <b-td
+                ><b-button>{{
+                  item.status ? "完了" : "作業中"
+                }}</b-button></b-td
+              >
               <b-td>
-                <b-button>削除</b-button>
+                <b-button @click="doRemove">削除</b-button>
               </b-td>
             </b-tr>
           </b-tbody>
         </b-table-simple>
         <h5 class="text-center mt-5">新規タスクの追加</h5>
         <div>
-          <b-form v-on:submit.prevent="doAdd">
+          <b-form @submit.prevent="doAdd">
             <div class="input-group">
               <input type="text" ref="comment" />
               <b-button class="btn" type="submit">追加</b-button>
@@ -42,7 +46,7 @@ export default {
     return {};
   },
   computed: {
-    todos() {
+    getTodos() {
       return this.$store.getters.todos;
     },
   },
@@ -56,6 +60,11 @@ export default {
       this.$store.commit("doAdd", comment.value);
 
       comment.value = "";
+    },
+    doRemove(item) {
+      let index = this.getTodos.indexOf(item);
+
+      this.$store.commit("doRemove", index);
     },
   },
 };
