@@ -12,7 +12,7 @@ const store = new Vuex.Store({
 
     state: {
         todos: [
-            { id: 1, comment: "test", status: false }
+
         ]
     },
     getters: {
@@ -26,9 +26,16 @@ const store = new Vuex.Store({
                 status: false,
             })
         },
-        doRemove(state,index){
-            state.todos.splice(index,1)
-        }
+        doRemove(state, index) {
+            state.todos.splice(index, 1)
+        },
+
+        reNumber(state) {
+            state.todos.forEach(function (el, index) {
+                state.todos[index].id = index;
+            })
+        },
+
     }
 })
 

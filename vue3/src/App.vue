@@ -21,14 +21,14 @@
                 }}</b-button></b-td
               >
               <b-td>
-                <b-button @click="doRemove">削除</b-button>
+                <b-button @click="doRemove(item); reNumber()">削除</b-button>
               </b-td>
             </b-tr>
           </b-tbody>
         </b-table-simple>
         <h5 class="text-center mt-5">新規タスクの追加</h5>
         <div>
-          <b-form @submit.prevent="doAdd">
+          <b-form @submit.prevent="doAdd()">
             <div class="input-group">
               <input type="text" ref="comment" />
               <b-button class="btn" type="submit">追加</b-button>
@@ -66,6 +66,9 @@ export default {
 
       this.$store.commit("doRemove", index);
     },
+    reNumber(){
+      this.$store.commit("reNumber")
+    }
   },
 };
 </script>
