@@ -23,7 +23,7 @@ const store = new Vuex.Store({
             state.todos.push({
                 id: state.todos.length,
                 comment: comment,
-                status: false,
+                status: Boolean(false),
             })
         },
         doRemove(state, index) {
@@ -35,6 +35,10 @@ const store = new Vuex.Store({
                 state.todos[index].id = index;
             })
         },
+        changeStatus(state, index) {
+            state.todos[index].status = !state.todos[index].status;
+        },
+
 
     }
 })

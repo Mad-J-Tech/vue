@@ -16,12 +16,18 @@
               <b-th>{{ item.id }}</b-th>
               <b-td>{{ item.comment }}</b-td>
               <b-td
-                ><b-button>{{
+                ><b-button @click="changeStatus(item)">{{
                   item.status ? "完了" : "作業中"
                 }}</b-button></b-td
               >
               <b-td>
-                <b-button @click="doRemove(item); reNumber()">削除</b-button>
+                <b-button
+                  @click="
+                    doRemove(item);
+                    reNumber();
+                  "
+                  >削除</b-button
+                >
               </b-td>
             </b-tr>
           </b-tbody>
@@ -66,9 +72,13 @@ export default {
 
       this.$store.commit("doRemove", index);
     },
-    reNumber(){
-      this.$store.commit("reNumber")
-    }
+    reNumber() {
+      this.$store.commit("reNumber");
+    },
+    changeStatus(item) {
+      let index = this.getTodos.indexOf(item);
+      this.$store.commit("changeStatus", index);
+    },
   },
 };
 </script>
