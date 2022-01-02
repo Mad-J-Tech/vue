@@ -17,6 +17,13 @@ const store = new Vuex.Store({
     },
     getters: {
         todos: state => state.todos,
+        doneTodos: state => {
+            return state.todos.filter(todo => todo.status)
+        },
+        currentTodos: state => {
+            return state.todos.filter(todo => !todo.status)
+        },
+
     },
     mutations: {
         doAdd(state, comment) {
