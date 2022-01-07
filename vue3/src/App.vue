@@ -2,14 +2,16 @@
   <b-container class="mt-5">
     <b-card-group>
       <b-card header="To Do List" header-class="text-center">
-        <b-form-group>
-          <b-form-radio-group
-            v-model="selected"
-            :options="options"
-            ref="select"
-          >
-          </b-form-radio-group>
-        </b-form-group>
+        <div>
+          <b-form-group>
+            <b-form-radio-group
+              v-model="selected"
+              :options="options"
+              ref="select"
+            >
+            </b-form-radio-group>
+          </b-form-group>
+        </div>
         <b-table-simple>
           <b-thead>
             <b-tr>
@@ -81,14 +83,12 @@
           </b-tbody>
         </b-table-simple>
         <h5 class="text-center mt-5">新規タスクの追加</h5>
-        <div>
-          <b-form @submit.prevent="doAdd">
-            <div class="input-group">
-              <input type="text" ref="comment" />
-              <b-button class="btn" type="submit">追加</b-button>
-            </div>
-          </b-form>
-        </div>
+        <b-form @submit.prevent="doAdd">
+          <div class="input-group">
+            <input type="text" ref="comment" class="form-control text-center" />
+            <b-button class="btn" type="submit">追加</b-button>
+          </div>
+        </b-form>
       </b-card>
     </b-card-group>
   </b-container>
@@ -156,5 +156,3 @@ export default {
 };
 </script>
 
-<style>
-</style>
